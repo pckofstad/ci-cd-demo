@@ -11,11 +11,11 @@ Resources for running a CI/CD setup demo against Azure
 ## 3. Create project to deploy
     A simple project of any kind would do. We are going to use docker to build the project. A template might make it go faster. 
 
-![Opprette prosjekt 1](/images/01-create-project-01.jpg)
+![Opprette prosjekt 1](/Images/01-create-project-01.jpg)
 
-![Opprette prosjekt 2](/images/01-create-project-02.jpg)
+![Opprette prosjekt 2](/Images/01-create-project-02.jpg)
 
-![Opprette prosjekt 3](/images/01-create-project-03.jpg)
+![Opprette prosjekt 3](/Images/01-create-project-03.jpg)
 
 
 ### 4. Run and test the app locally
