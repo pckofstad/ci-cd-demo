@@ -29,7 +29,7 @@ Resources for running a CI/CD setup demo against Azure
     - Ensure docker desktop is running before testing the the docker file locally
     - Testing can be done by selecting docker in the run-dropdown-menu
 
-![Test docker locally](./images/02-testing-docker-01.jpg)
+![Test docker locally](/Images/02-testing-docker-01.jpg)
 
 
 ### 6. Commit existing code and push
