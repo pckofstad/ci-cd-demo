@@ -9,10 +9,6 @@ on:
       - main
   workflow_dispatch:
 
-defaults:
- run:
-  working-directory: ./CI-CD.Demo
-
 jobs:
   build:
     runs-on: 'ubuntu-latest'
@@ -35,6 +31,7 @@ jobs:
     - name: Build and push container image to registry
       uses: docker/build-push-action@v2
       with:
+        working-directory: ./CI-CD.Demo
         context: . 
         push: true
         tags: pckcicdtesting.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_47643362f90d4256a55b690242798274 }}/test:${{ github.sha }}
