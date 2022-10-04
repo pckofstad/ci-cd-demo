@@ -124,7 +124,7 @@ Resources for running a CI/CD setup demo against Azure
     - Replace the following:
 
 ```
-    - uses: actions/checkout@v2 
+    - uses: actions/checkout@v1
 ```
 
     with
@@ -147,12 +147,6 @@ Resources for running a CI/CD setup demo against Azure
     file: ./BlazorApp1/Server/Dockerfile
 ```do
     
-    - Under the step "Build and push container image to registry"
-    Add the following argument under "with:"
-
-``` 
-    context: ./CI-CD.Demo
-``` 
 
     - Click start commit. Either commit direcly or create a pull-prequest from a new branch. If you select pull-request then merge the pull-request inn straight away. 
 
@@ -160,5 +154,15 @@ Resources for running a CI/CD setup demo against Azure
     - Click on Actions in the repoitory menu
     - Click on the menu Item with a name that starts with "Build and deploy container app to Azure Web App - "
     - Click Run workflow
+    - If all is configured correctly everything should build and deploy without any errors. 
+
+# Testing and self study
+Can you test and figure out the following task on your own?
+
+A. Do changes to the application, deploy them and see if it actually updates. Do you have to do something extra? If so, then what?
+
+B. Clean up the variables in the yml file. Make the shorter and more readable. It is not possible to see the values in the secret variables from github, you need to retrieve this from Azure again. 
+
+C. Do you dare to add some tests and make them run in the yml script? What strategy would you use?
 
 
