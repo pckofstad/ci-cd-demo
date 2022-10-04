@@ -1,0 +1,53 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy container app to Azure Web App - pck-ci-cd-testing
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: 'ubuntu-latest'
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+          ref: ${{ github.ref }}
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Log in to registry
+      uses: docker/login-action@v1
+      with:
+        registry: https://pckcicdtesting.azurecr.io/
+        username: ${{ secrets.AzureAppService_ContainerUsername_47643362f90d4256a55b690242798274 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_42d62800280746de86d2e2ecca6ae964 }}
+
+    - name: Build and push container image to registry
+      uses: docker/build-push-action@v2
+      with:
+        push: true
+        tags: pckcicdtesting.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_47643362f90d4256a55b690242798274 }}/test:${{ github.sha }}
+        file: ./CI-CD.Demo/BlazorApp1/Server/Dockerfile
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+    - name: Deploy to Azure Web App
+      id: deploy-to-webapp
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'pck-ci-cd-testing'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_8450223d7b924152ba2dc6545f96ead1 }}
+        images: 'pckcicdtesting.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_47643362f90d4256a55b690242798274 }}/test:${{ github.sha }}'
