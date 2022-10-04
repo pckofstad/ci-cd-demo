@@ -144,9 +144,15 @@ Resources for running a CI/CD setup demo against Azure
     to
 
 ```
-    file: ./CI-CD.Demo/BlazorApp1/Server/Dockerfile
-```
+    file: ./BlazorApp1/Server/Dockerfile
+```do
     
+    - Under the step "Build and push container image to registry"
+    Add the following argument under "with:"
+
+``` 
+    context: ./CI-CD.Demo
+``` 
 
     - Click start commit. Either commit direcly or create a pull-prequest from a new branch. If you select pull-request then merge the pull-request inn straight away. 
 
