@@ -33,7 +33,7 @@ jobs:
       with:
         push: true
         tags: pckcicdtesting.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_47643362f90d4256a55b690242798274 }}/test:${{ github.sha }}
-        file: ./Dockerfile
+        file: ./CI-CD.Demo/BlazorApp1/Server/Dockerfile
 
   deploy:
     runs-on: ubuntu-latest
